@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-11-6 14:07:21 by Hibernate Tools 4.3.5.Final -->
+<hibernate-mapping>
+    <class name="com.wangqi.entity.Student" table="student" catalog="stu" optimistic-lock="version">
+        <id name="sid" type="java.lang.Integer">
+            <column name="sid" />
+            <generator class="identity" />
+        </id>
+        <property name="sname" type="string">
+            <column name="sname" />
+        </property>
+        <property name="saddress" type="string">
+            <column name="saddress" />
+        </property>
+        <property name="grade" type="string">
+            <column name="grade" />
+        </property>
+        <set name="teachers" table="student_teacher" lazy="false" fetch="select" inverse="false">
+            <key>
+                <column name="stu_id" />
+            </key>
+            <many-to-many class="com.wangqi.entity.Teacher" column="tea_id"></many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>
